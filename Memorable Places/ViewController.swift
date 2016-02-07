@@ -63,17 +63,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     print(error)
                 }
                 var title = ""
+                
                 if let placemarks: CLPlacemark = CLPlacemark(placemark: placemark![0]) {
                     
                     if placemarks.subThoroughfare != nil && placemarks.thoroughfare != nil {
                     
-                    title = "\(placemarks.subThoroughfare) \(placemarks.thoroughfare)"
+                    title = "\(placemarks.subThoroughfare!) \(placemarks.thoroughfare!)"
                     }
                 }
+                if title == "" {
+                    title = "added \(NSDate())"
+                }
+                var annotation = MKPointAnnotation()
+                annotation.title = title
+                annotation.coordinate = newCoordinate
+                self.map.addAnnotation(annotation)
+                
+                places.append(["name": title, "lat": "\(newCoordinate.latitude)", "lon": "\(newCoordinate.longitude)"])
+                
             })
             
-            addedPlace = String(touchPoint)
         }
+    
         
         
     }

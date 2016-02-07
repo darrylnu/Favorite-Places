@@ -10,6 +10,8 @@ import UIKit
 
 var addedPlace:String?
 
+var places = [Dictionary<String, String>()]
+
 class TableViewController: UITableViewController {
     
 
@@ -21,6 +23,7 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        places.removeAtIndex(0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,7 +40,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return places.count
     }
 
     
@@ -46,11 +49,15 @@ class TableViewController: UITableViewController {
 
         // Configure the cell...
         
-        cell.textLabel!.text = addedPlace
+        cell.textLabel!.text = places[indexPath.row]["name"]
+        print("updating cell")
 
         return cell
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
 
     /*
     // Override to support conditional editing of the table view.
