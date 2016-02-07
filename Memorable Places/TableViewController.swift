@@ -8,8 +8,6 @@
 
 import UIKit
 
-var addedPlace:String?
-
 var places = [Dictionary<String, String>()]
 
 class TableViewController: UITableViewController {
@@ -24,6 +22,7 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         places.removeAtIndex(0)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +56,18 @@ class TableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
+        activePoint = false
+    }
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        
+        pressedLat = Double(places[indexPath.row]["lat"]!)
+        pressedLon = Double(places[indexPath.row]["lon"]!)
+        activePoint = true
+        
+        print(pressedLat)
+        print(pressedLon)
+        return indexPath
     }
 
     /*

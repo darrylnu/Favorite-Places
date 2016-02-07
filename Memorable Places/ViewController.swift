@@ -9,8 +9,12 @@
 import UIKit
 import MapKit
 
+var pressedLat: CLLocationDegrees?
+var pressedLon: CLLocationDegrees?
+
+var activePoint = false
+
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-    
     
     @IBOutlet var map: MKMapView!
     
@@ -30,6 +34,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         uilgpr.minimumPressDuration = 2
         map.addGestureRecognizer(uilgpr)
         
+        print("map loaded")
+        
         
     }
     
@@ -37,14 +43,32 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         var userLocation:CLLocation = locations[0]
         
+        if pressedLon != nil && pressedLat != nil && activePoint {
+            var latitude: CLLocationDegrees = pressedLat!
+            var longitude: CLLocationDegrees = pressedLon!
+            var latDelta: CLLocationDegrees = 0.5
+            var lonDelta: CLLocationDegrees = 0.5
+            var span: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+            let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+            var region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+            map.setRegion(region, animated: false)
+            
+            var annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            map.addAnnotation(annotation)
+            
+            
+        } else if !activePoint {
         var latitude: CLLocationDegrees = userLocation.coordinate.latitude
         var longitude: CLLocationDegrees = userLocation.coordinate.longitude
-        var latDelta: CLLocationDegrees = 0.5
-        var lonDelta: CLLocationDegrees = 0.5
-        var span: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
-        var location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        var region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
-        map.setRegion(region, animated: false)
+            var latDelta: CLLocationDegrees = 0.5
+            var lonDelta: CLLocationDegrees = 0.5
+            var span: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+            let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+            var region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+            map.setRegion(region, animated: false)
+        }
+      
     }
     
     func pressed(gestureRecognizer:UIGestureRecognizer) {
