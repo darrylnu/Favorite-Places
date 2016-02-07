@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Favorite Places-->
         <scene sceneID="rO6-vz-cDc">
             <objects>
                 <tableViewController id="YFr-p5-30r" customClass="TableViewController" customModule="Memorable_Places" customModuleProvider="target" sceneMemberID="viewController">
@@ -14,22 +14,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UNu-wq-vyK">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="cNA-YA-oa6">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UNu-wq-vyK" id="0VZ-7R-XwE">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cNA-YA-oa6" id="V1k-07-f43">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="YFr-p5-30r" id="Tlb-P4-aAR"/>
                             <outlet property="delegate" destination="YFr-p5-30r" id="rP7-Og-Rvm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="RmT-VX-I6O">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="m4i-gr-KBw">
+                    <navigationItem key="navigationItem" title="Favorite Places" id="RmT-VX-I6O">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="sP0-xr-gKw"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="m4i-gr-KBw">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="BYZ-G1-eNm"/>
                             </connections>
@@ -41,7 +43,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ne-4m-Acq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-244" y="630"/>
+            <point key="canvasLocation" x="-244.5" y="629.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="B99-Tj-wTZ">
@@ -79,6 +81,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="map" destination="QZB-0E-3ey" id="dtP-jJ-C4X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
